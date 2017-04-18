@@ -1,1 +1,17 @@
-<h1>My Questions</h1>
+<h2>My Questions</h2>
+<h3>Ask a question</h3>
+<form method="post" action="/question">
+    <input type=text placeholder="Ask" name="question[title]"></br>
+    <input type=text placeholder="Enter Question Details (Optional)" name="question[description]"><br>
+    <input type=submit value="Submit Question">
+</form>
+<%= @error if @error.present? %> 
+
+<% if @question.present? %>
+<dl>
+<%Question.all.each do |u|%>
+   <dt><%= u.title %></dt>
+   <dd><%= u.description %></dd>
+</dl>   
+   <%end%>
+  <%end%>

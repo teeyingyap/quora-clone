@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	has_many :questions, foreign_key: :user_id
+
     validates :name, presence: true
 	validates :email, uniqueness: true
 	validates :email, presence: true
