@@ -57,5 +57,17 @@ get '/users/:id/my_answer' do
 end
 
 get '/users/:id/my_question' do 
+  @question = Question.last
   erb :"users/my_question"
 end
+
+post '/question' do
+  question = Question.new(params[:question])
+  question.user_id = current_user.id
+  if question.save
+    redirect "users/#{current_user.id}/my_question"
+  else
+  	@error = question.errors.full_messages.first #the error is from the validation whenever you try to save something in
+  	erb :"users/my_question" #so u cannot use the this same error method in /login because you're not trying to save anything to the database
+  end
+end 

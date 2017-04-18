@@ -1,8 +1,8 @@
 get '/' do
-  if session[:user_id] = nil
-   	erb :"static/index"
+  if logged_in?
+   	erb :"static/main"
   else 
-	erb :"static/main" 
+	erb :"static/index" 
   end
 end
 
