@@ -10,3 +10,10 @@
 </div>
 </div>
 
+<h4>Ask a question</h4>
+<form method="post" action="/question">
+    <input type=text placeholder="Ask" name="question[title]"></br>
+    <input type=text placeholder="Enter Question Details (Optional)" name="question[description]"><br>
+    <input type=submit value="Submit Question">
+</form>
+<%= @error if @error.present? %> 

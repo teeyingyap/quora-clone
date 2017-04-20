@@ -1,2 +1,6 @@
-<a href="/users/<%= current_user.id %>">Profile</a></p>
+<a href="/users/<%= current_user.id %>">Profile</a>
+
+<% Question.all.each do |question| %>
+<p><a class="link" href="/questions/<%= question.id %>"><%= question.title %></a></p>
+<% end %>
 

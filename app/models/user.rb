@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-	has_many :questions, foreign_key: :user_id
+	has_many :questions, foreign_key: :user_id, dependent: :destroy
+	has_many :answers, foreign_key: :user_id, dependent: :destroy
+    has_many :question_votes
+    has_many :answer_votes
 
     validates :name, presence: true
 	validates :email, uniqueness: true

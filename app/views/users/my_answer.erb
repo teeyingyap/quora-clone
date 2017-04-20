@@ -1,1 +1,9 @@
+<a href="/users/<%= current_user.id %>">Profile</a>
 <h2>My Answers</h2>
+
+<% answers = Answer.where(user_id: current_user.id) %>
+<% answers.each do |answer| %>
+<p><a href="/questions/<%= answer.question.id %>"><%= answer.question.title %></a></p>
+<p><%= answer.title %></p>
+<% end %>
+
