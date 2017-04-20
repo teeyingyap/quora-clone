@@ -12,12 +12,12 @@
       </form>
 
 			<div>
-				<form action="/questionvotes/<%= question.id %>/up" method="post">
+				<form action="/questionvotes/<%= question.id %>/up" method="post" class='qupvotebutton' id="questionup-<%=question.id %>">
 					<input type="hidden" name=questionvote[question_id] value="<%= question.id %>">
 					<input type="hidden" name=questionvote[updown] value="true">
 					<input type="submit" value="Upvote | <%= count_question_upvotes(question) %>">
 				</form>
-				<form action="/questionvotes/<%= question.id %>/down" method="post">
+				<form action="/questionvotes/<%= question.id %>/down" method="post" class='qdownvotebutton' id="questiondown-<%=question.id %>">
 					<input type="hidden" name=questionvote[question_id] value="<%= question.id %>">
 					<input type="hidden" name=questionvote[updown] value="false">
 					<input type="submit" value="Downvote | <%= count_question_downvotes(question) %>">

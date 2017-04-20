@@ -27,3 +27,5 @@ post '/question/:id/answer' do
   	erb :"questions/question" #so u cannot use the this same error method in /login because you're not trying to save anything to the database
   end
 end
+
+
