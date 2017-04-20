@@ -1,17 +1,35 @@
+<a href="/users/<%= current_user.id %>">Profile</a>
 <h2>My Questions</h2>
-<h3>Ask a question</h3>
-<form method="post" action="/question">
-    <input type=text placeholder="Ask" name="question[title]"></br>
-    <input type=text placeholder="Enter Question Details (Optional)" name="question[description]"><br>
-    <input type=submit value="Submit Question">
-</form>
-<%= @error if @error.present? %> 
 
 <% if @question.present? %>
 <dl>
-<%Question.all.each do |u|%>
-   <dt><%= u.title %></dt>
-   <dd><%= u.description %></dd>
+<%Question.where(user_id: current_user.id).each do |question|%>
+   <dt><%= question.title %></dt>
+   <dd><%= question.description %></dd>
+   <dd>
+      <form action="/questions/<%= question.id %>">
+        <input type="submit" value="Answer" />
+      </form>
+
+			<div>
+				<form action="/questionvotes/<%= question.id %>/up" method="post">
+					<input type="hidden" name=questionvote[question_id] value="<%= question.id %>">
+					<input type="hidden" name=questionvote[updown] value="true">
+					<input type="submit" value="Upvote | <%= count_question_upvotes(question) %>">
+				</form>
+				<form action="/questionvotes/<%= question.id %>/down" method="post">
+					<input type="hidden" name=questionvote[question_id] value="<%= question.id %>">
+					<input type="hidden" name=questionvote[updown] value="false">
+					<input type="submit" value="Downvote | <%= count_question_downvotes(question) %>">
+				</form>
+			</div>
+
+   </dd>
+
 </dl>   
    <%end%>
   <%end%>
+
+
+
+	

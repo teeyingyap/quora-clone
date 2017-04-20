@@ -6,13 +6,9 @@
   <h1><a href="/">Quora</a></h1>
       <% if current_user %>
        <p>Signed in as <%= current_user.name %></p>
-       <form method=post action=/logout>
+       <form method=post action="/logout">
          <input type=submit value="Log out">
-       </form> 
-       <% else %>
-         <form method=post action=/login>
-           <input type=submit value="Log in">
-         </form>          
+       </form>       
       <% end %>
 		<%= yield %>
 	</body>

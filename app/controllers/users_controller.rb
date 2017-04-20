@@ -1,5 +1,3 @@
-# In users_controller.rb
-
 post '/signup' do
   user = User.new(params[:user])
   if user.save
@@ -34,7 +32,7 @@ post '/logout' do #User.destroy DOESNT WORK
   # kill a session when a user chooses to logout, for example, assign nil to a session
   # redirect to the appropriate page
   session[:user_id] = nil
-  redirect '/login'  	
+  redirect '/'  	
 end 
 
 get '/login' do 
@@ -61,13 +59,3 @@ get '/users/:id/my_question' do
   erb :"users/my_question"
 end
 
-post '/question' do
-  question = Question.new(params[:question])
-  question.user_id = current_user.id
-  if question.save
-    redirect "users/#{current_user.id}/my_question"
-  else
-  	@error = question.errors.full_messages.first #the error is from the validation whenever you try to save something in
-  	erb :"users/my_question" #so u cannot use the this same error method in /login because you're not trying to save anything to the database
-  end
-end 

@@ -1,0 +1,28 @@
+
+<%= @question.title %>
+
+<form method="post" action="/question/<%= @question.id %>/answer">
+    <input type=text placeholder="Write your answer" name="answer[title]"></br>
+    <input type=submit value="Submit">
+</form>
+
+<% if Answer.last.present? %>
+<% @answers.each do |answer| %>
+<%= answer.title %> 
+<p> Answered by <%= answer.user.name %></p>
+			<div>
+				<form action="/answervotes/<%= answer.id %>/up" method="post">
+					<input type="hidden" name=answervote[answer_id] value="<%= answer.id %>">
+					<input type="hidden" name=answervote[updown] value="true">
+					<input type="submit" value="Upvote | <%= count_answer_upvotes(answer)%>">
+				</form>
+				<form action="/answervotes/<%= answer.id %>/down" method="post">
+					<input type="hidden" name=answervote[answer_id] value="<%= answer.id %>">
+					<input type="hidden" name=answervote[updown] value="false">
+					<input type="submit" value="Downvote | <%= count_answer_downvotes(answer)%>">
+				</form>
+			</div>
+
+<% end %>
+<% end %>
+
