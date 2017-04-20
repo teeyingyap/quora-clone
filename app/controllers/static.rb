@@ -1,5 +1,5 @@
 get '/' do
-  if logged_in?
+  if logged_in? 
    	erb :"static/main"
   else 
 	erb :"static/index" 

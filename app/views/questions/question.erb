@@ -11,12 +11,12 @@
 <%= answer.title %> 
 <p> Answered by <%= answer.user.name %></p>
 			<div>
-				<form action="/answervotes/<%= answer.id %>/up" method="post">
+				<form action="/answervotes/<%= answer.id %>/up" method="post" class='aupvotebutton' id="answerup-<%=answer.id %>">
 					<input type="hidden" name=answervote[answer_id] value="<%= answer.id %>">
 					<input type="hidden" name=answervote[updown] value="true">
 					<input type="submit" value="Upvote | <%= count_answer_upvotes(answer)%>">
 				</form>
-				<form action="/answervotes/<%= answer.id %>/down" method="post">
+				<form action="/answervotes/<%= answer.id %>/down" method="post" class='adownvotebutton' id="answerdown-<%=answer.id %>">
 					<input type="hidden" name=answervote[answer_id] value="<%= answer.id %>">
 					<input type="hidden" name=answervote[updown] value="false">
 					<input type="submit" value="Downvote | <%= count_answer_downvotes(answer)%>">
